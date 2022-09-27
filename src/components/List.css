@@ -1,0 +1,35 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+p {
+  font-size: 16px;
+  padding: 0;
+}
+
+table {
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+td {
+  min-width: 50px;
+  min-height: 50px;
+  border: 1px solid black;
+}
+
+.high-low,
+.medium-medium,
+.low-high {
+  background-color: yellow;
+}
+.high-medium,
+.medium-high,
+.high-high {
+  background-color: red;
+}
+.medium-low,
+.low-low,
+.low-medium {
+  background-color: green;
+}
