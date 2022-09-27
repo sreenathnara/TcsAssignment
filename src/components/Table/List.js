@@ -1,28 +1,33 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import "./List.css";
-// import Form from "./Form";
 
-const HighLow = [];
-const HighMedium = [];
-const HighHigh = [];
-const MediumLow = [];
-const MediumMedium = [];
-const MediumHigh = [];
-const LowLow = [];
-const LowMedium = [];
-const LowHigh = [];
+let HighLow = [];
+let HighMedium = [];
+let HighHigh = [];
+let MediumLow = [];
+let MediumMedium = [];
+let MediumHigh = [];
+let LowLow = [];
+let LowMedium = [];
+let LowHigh = [];
 
-console.log(HighLow, "highlow");
-console.log(HighMedium, "highmedium");
+function List(props) {
+  // on everytime componet re-renders i manuvally do all arrays empty because every componet re-rerendrs i get the previous user data also using useEffect hook
+  useEffect(() => {
+    HighLow = [];
+    HighMedium = [];
+    HighHigh = [];
+    MediumLow = [];
+    MediumMedium = [];
+    MediumHigh = [];
+    LowLow = [];
+    LowMedium = [];
+    LowHigh = [];
+  }, [props]);
 
-export default function List(props) {
-  console.log(props.ranga, "this array data");
-  const array = props.ranga;
-  console.log(array);
-  array.forEach((e) => {
-    const item = e.data;
-    console.log(item, "item");
-    console.log(item);
+  const array = props.userData;
+
+  array.forEach((item) => {
     if (item.impact === "High" && item.probability === "Low") {
       HighLow.push(item.title);
     } else if (item.impact === "High" && item.probability === "Medium") {
@@ -36,19 +41,16 @@ export default function List(props) {
     } else if (item.impact === "Medium" && item.probability === "High") {
       MediumHigh.push(item.title);
     } else if (item.impact === "Low" && item.probability === "Low") {
-      HighLow.push(item.title);
+      LowLow.push(item.title);
     } else if (item.impact === "Low" && item.probability === "Medium") {
-      HighMedium.push(item.title);
+      LowMedium.push(item.title);
     } else if (item.impact === "Low" && item.probability === "High") {
-      HighHigh.push(item.title);
+      LowHigh.push(item.title);
     } else {
-      return "ranga";
+      return;
     }
   });
-  // const [formdata,setFormdata]=useState([])
-  console.log(props.ranga, "this is form data");
-  console.log(props);
-  console.log(props.name);
+
   return (
     <div className="App">
       <table>
@@ -64,54 +66,54 @@ export default function List(props) {
           <tr>
             <td>High</td>
             <td className="high-low">
-              {HighLow.map((e) => (
-                <p>{e}</p>
+              {HighLow.map((e, i) => (
+                <p key={`h${i}`}>{e}</p>
               ))}
             </td>
             <td className="high-medium">
-              {HighMedium.map((e) => (
-                <p>{e}</p>
+              {HighMedium.map((e, i) => (
+                <p key={`m${i}`}>{e}</p>
               ))}
             </td>
             <td className="high-high">
-              {HighHigh.map((e) => (
-                <p>{e}</p>
+              {HighHigh.map((e, i) => (
+                <p key={`s${i}`}>{e}</p>
               ))}
             </td>
           </tr>
           <tr>
             <td>Medium</td>
             <td className="medium-low">
-              {MediumLow.map((e) => (
-                <p>{e}</p>
+              {MediumLow.map((e, i) => (
+                <p key={`l${i}`}>{e}</p>
               ))}
             </td>
             <td className="medium-medium">
-              {MediumMedium.map((e) => (
-                <p>{e}</p>
+              {MediumMedium.map((e, i) => (
+                <p key={`s${i}`}>{e}</p>
               ))}
             </td>
             <td className="medium-high">
-              {MediumHigh.map((e) => (
-                <p>{e}</p>
+              {MediumHigh.map((e, i) => (
+                <p key={`s${i}`}>{e}</p>
               ))}
             </td>
           </tr>
           <tr>
             <td>Low</td>
             <td className="low-low">
-              {LowLow.map((e) => (
-                <p>{e}</p>
+              {LowLow.map((e, i) => (
+                <p key={`s${i}`}>{e}</p>
               ))}
             </td>
             <td className="low-medium">
-              {LowMedium.map((e) => (
-                <p>{e}</p>
+              {LowMedium.map((e, i) => (
+                <p key={`s${i}`}>{e}</p>
               ))}
             </td>
             <td className="low-high">
-              {LowHigh.map((e) => (
-                <p>{e}</p>
+              {LowHigh.map((e, i) => (
+                <p key={`s${i}`}>{e}</p>
               ))}
             </td>
           </tr>
@@ -120,3 +122,5 @@ export default function List(props) {
     </div>
   );
 }
+
+export default List;

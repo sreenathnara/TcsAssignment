@@ -1,16 +1,14 @@
-// import Form from "./components/Form";
-import Form from "./components/Form";
-
-import React from "react";
+import Form from "./components/Form/Form";
+import React, { useState } from "react";
+import List from "./components/Table/List";
 
 function App() {
-  const dummyData = {
-    data: { ranga: "ranga", Ramgga: "balu" },
-  };
-  const ranga = "rnaga";
+  const [userData, setUserData] = useState([]);
+
   return (
     <div>
-      <Form balu={dummyData} />
+      <Form data={userData} setUserData={setUserData} />
+      <List userData={userData} />
     </div>
   );
 }

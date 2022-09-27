@@ -1,19 +1,16 @@
 import "./Form.css";
 import React, { useState } from "react";
-import List from "./List";
 
-export default function Form(props) {
-  console.log(props);
+export default function Form({ data, setUserData }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState();
   const [probability, setProbability] = useState();
   const [impact, setImpact] = useState();
-  const [list, setList] = useState([]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const data = {
+    const userDetails = {
       title,
       description,
       type,
@@ -21,16 +18,13 @@ export default function Form(props) {
       impact,
     };
 
-    console.log(data);
-    setList([...list, { data }]);
+    setUserData([...data, userDetails]);
     setTitle("");
     setDescription("");
     setType("");
     setImpact("");
     setProbability("");
   };
-
-  console.log(list, "list items");
 
   return (
     <div className="List-1">
@@ -95,7 +89,6 @@ export default function Form(props) {
           Submit
         </button>
       </form>
-      <List ranga={list} />
     </div>
   );
 }
