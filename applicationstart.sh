@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd /home/ubuntu
-npm start
+pm2 -f start server.js
